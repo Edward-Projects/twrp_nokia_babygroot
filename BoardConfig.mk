@@ -173,12 +173,6 @@ RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/strace
 ##
 # For local builds only
 #
-# TWRP zip installer
-ifneq ($(wildcard bootable/recovery/installer/.),)
-    USE_RECOVERY_INSTALLER := true
-    RECOVERY_INSTALLER_PATH := bootable/recovery/installer
-endif
-
 # Custom TWRP Versioning
 # See https://github.com/minimal-manifest-twrp/android_device_common_version-info for details
 ifneq ($(USE_CUSTOM_VERSION),)
