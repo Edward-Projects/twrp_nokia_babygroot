@@ -23,6 +23,6 @@ PRODUCT_RELEASE_NAME := babygroot
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := babygroot
 PRODUCT_NAME := twrp_babygroot
-PRODUCT_BRAND := OnePlus
-PRODUCT_MODEL := AC2003
-PRODUCT_MANUFACTURER := oneplus
+PRODUCT_BRAND := Nokia
+PRODUCT_MODEL := Nokia 8.3 5G
+PRODUCT_MANUFACTURER := hmd
