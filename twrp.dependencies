@@ -1,0 +1,8 @@
+[
+  {
+    "remote": "TeamWin",
+    "repository": "android_kernel_nokia_sm7250",
+    "target_path": "kernel/nokia/sm7250",
+    "branch": "android-12.1"
+  }
+]
