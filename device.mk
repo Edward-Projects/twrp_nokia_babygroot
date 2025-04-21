@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-LOCAL_PATH := device/oneplus/avicii
+LOCAL_PATH := device/nokia/babygroot
 
 # A/B support
 AB_OTA_UPDATER := true
@@ -69,3 +69,18 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_PACKAGES += \
     qcom_decrypt \
     qcom_decrypt_fbe
+
+#
+# For local builds only
+#
+# Custom TWRP Versioning
+ifneq ($(USE_CUSTOM_VERSION),)
+    ifneq ($(wildcard device/common/version-info/.),)
+        # device version is optional - the default value is "0" if nothing is set in device tree
+        CUSTOM_TWRP_DEVICE_VERSION := 0
+    endif
+endif
+#
+# end local build flags
+#
+

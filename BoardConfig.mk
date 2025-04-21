@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/oneplus/avicii
+DEVICE_PATH := device/nokia/babygroot
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -30,7 +30,7 @@ ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := avicii,OnePlusNord,Nord
+TARGET_OTA_ASSERT_DEVICE := babygroot
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := $(PRODUCT_PLATFORM)
@@ -73,7 +73,7 @@ TARGET_FORCE_PREBUILT_KERNEL := true
 TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/dtc/dtc
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CONFIG := vendor/lito-perf_defconfig
-TARGET_KERNEL_SOURCE := kernel/oneplus/sm7250
+TARGET_KERNEL_SOURCE := kernel/nokia/sm7250
 TARGET_NO_KERNEL := false
 
 # Platform
@@ -95,9 +95,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
 # Dynamic/Logical Partitions
-BOARD_ONEPLUS_DYNAMIC_PARTITIONS_PARTITION_LIST := odm product system system_ext vendor
-BOARD_ONEPLUS_DYNAMIC_PARTITIONS_SIZE := 7511998464
-BOARD_SUPER_PARTITION_GROUPS := oneplus_dynamic_partitions
+BOARD_HMD_DYNAMIC_PARTITIONS_PARTITION_LIST := odm product system system_ext vendor
+BOARD_HMD_DYNAMIC_PARTITIONS_SIZE := 7511998464
+BOARD_SUPER_PARTITION_GROUPS := hmd_dynamic_partitions
 BOARD_SUPER_PARTITION_SIZE := 15032385536
 
 # Workaround for error copying vendor files to recovery ramdisk
@@ -170,7 +170,7 @@ RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd
 TARGET_RECOVERY_DEVICE_MODULES += strace
 RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/strace
 
-#
+##
 # For local builds only
 #
 # TWRP zip installer
@@ -180,13 +180,18 @@ ifneq ($(wildcard bootable/recovery/installer/.),)
 endif
 
 # Custom TWRP Versioning
-ifneq ($(wildcard device/common/version-info/.),)
-    CUSTOM_TWRP_VERSION_PREFIX := CPTB
+# See https://github.com/minimal-manifest-twrp/android_device_common_version-info for details
+ifneq ($(USE_CUSTOM_VERSION),)
+    ifneq ($(wildcard device/common/version-info/.),)
+        # version prefix is optional - the default value is "LOCAL" if nothing is set in device tree
+        CUSTOM_TWRP_VERSION_PREFIX := Edward
 
-    include device/common/version-info/custom_twrp_version.mk
+        # Repo must be synced for automatic custom versioning to work
+        include device/common/version-info/custom_twrp_version.mk
 
-    ifeq ($(CUSTOM_TWRP_VERSION),)
-        CUSTOM_TWRP_VERSION := $(shell date +%Y%m%d)-01
+        ifeq ($(CUSTOM_TWRP_VERSION),)
+            CUSTOM_TWRP_VERSION := $(shell date +%Y%m%d)-01
+        endif
     endif
 endif
 #
