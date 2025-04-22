@@ -24,6 +24,10 @@ lunch twrp_babygroot-eng
 mka recoveryimage -j$(nproc --all) 
 ```
 
+## Credits
+- [TWRP](https://twrp.me)
+- [TWRP device tree of OnePlus Nord](https://github.com/TeamWin/android_device_oneplus_avicii)
+
 ### Copyright
  ```
   /*
